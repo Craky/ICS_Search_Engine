@@ -6,5 +6,4 @@ webindexer.iml
 data/*
 .idea/*
 web-indexer.iml
-src/main/resources/configuration.properties
 .DS_Store
