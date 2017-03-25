@@ -1,4 +1,5 @@
-#ICS Search Engine
+ICS Search Engine
+---------------
 
 <table>
   <tr>
