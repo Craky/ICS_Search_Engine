@@ -68,7 +68,7 @@
 
 * Reduce job processes the data given by the map task. Several tasks of the mapper are combined by the reducer and the data is processed to produce the new output.
 
-![image alt text](media/image_0.png)
+![image alt text](media/image1.png)
 
 **Fig. 1 Map-Reduce example** (Source - http://www.glennklockwood.com/data-intensive/hadoop/mapreduce-workflow.png)
 
@@ -178,7 +178,7 @@ After improvement
 
 NDCG:	[0.8, 0.4, 0.3697727287149246, 0.3877057761880933, 0.3560330822443896, 0.33169344292699493, 0.31833446857814457, 0.39757243814012383, 0.475335582735043, 0.4995276844019553]
 
-![image alt text](image_3.png)
+![image alt text](media/image_3.png)
 
 * Query:	security
 
