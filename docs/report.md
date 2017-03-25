@@ -17,7 +17,9 @@
 
 
 **Algorithm**
+
 ![image alt text](media/flow-part1.png)
+
 ![image alt text](media/flow-part2.png)
 
 **EXPLANATION**
