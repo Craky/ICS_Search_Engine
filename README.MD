@@ -5,5 +5,5 @@ ICS Search Engine
 
 [travis]:https://travis-ci.org/vivekpn/ICS_Search_Engine/builds
 [travis img]:https://api.travis-ci.org/vivekpn/ICS_Search_Engine.png
-[coverage]:http://codecov.io/github/checkstyle/checkstyle?branch=master
-[coverage img]:http://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
+[coverage]:http://codecov.io/github/vivekpn/ICS_Search_Engine?branch=master
+[coverage img]:http://codecov.io/github/vivekpn/ICS_Search_Engine/coverage.svg?branch=master
