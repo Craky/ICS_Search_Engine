@@ -1,21 +1,17 @@
-#ICS Search Engine
+**ICS Search Engine**
 
 <table>
   <tr>
-    <td>TEAM MEMBERS</td>
-    <td>STUDENT ID</td>
+    <td>Project Members</td>
   </tr>
   <tr>
-    <td>YATHISH SUDHAKARA GANGOLLI</td>
-    <td>76321632</td>
+    <td>Vivek Narayanamurthy</td>
   </tr>
   <tr>
-    <td>VIVEK NARAYANAMURTHY</td>
-    <td>23123110</td>
+    <td>Yathish Sudhakara Gangolli</td>
   </tr>
   <tr>
-    <td>SNEHAL GANDHAM</td>
-    <td>79007757</td>
+    <td>Snehal Gandham</td>
   </tr>
 </table>
 
@@ -146,9 +142,9 @@ where, A is the page
 
 NDCG has been improved by the following ways:
 
-* Initially, score was summation of weighted cosine similarity and weighted TF-IDF also weighted score of the <title> tags were considered.
+* Initially, score was summation of weighted cosine similarity and weighted TF-IDF also weighted score of the title tags were considered.
 
-* First, only the <title> tags were considered. Later, all the tags such as <h1>, <h2>, <h3> and <b> were also considered for scoring to improve NDCG.
+* First, only the title tags were considered. Later, all the tags such as h1, h2, h3 and b were also considered for scoring to improve NDCG.
 
 * Later to improve NDCG, weighted PageRank and weighted anchor text was considered. This made a significant impact on the scoring and NDCG values improved by a good margin.
 
