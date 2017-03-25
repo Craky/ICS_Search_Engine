@@ -1,4 +1,4 @@
-**ICS Search Engine**
+#ICS Search Engine
 
 <table>
   <tr>
@@ -17,6 +17,8 @@
 
 
 **Algorithm**
+![image alt text](media/flow-part1.png)
+![image alt text](media/flow-part2.png)
 
 **EXPLANATION**
 
