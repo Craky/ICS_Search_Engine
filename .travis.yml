@@ -4,3 +4,20 @@ script: "mvn cobertura:cobertura"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+install: true
+addons:
+  sonarqube:
+    organization: "vivekpn-github"
+    token:
+	secure: "gsxaYmDFHAnH3arjnDjXlHdD1TlFcmP8hxDrr6Tbwzso42lEqxD+aHH2depn1ntqJtevgjmjVSH1CONUYXyV3YluqpqJfqSDAe+dqnt+ASQyrQNe53Hoo/uKqX2jgMMOC61QMND/skXw1BC7OqAN9Xp8FhNep6y670XhTHFiShuWDXLA5dGvKLalId894Xr8fmE08afIrXW4C4Q5RQ4ldoWrJNg/VRhyDiIucJRUJfzG3wZlnPi34ZcfFyh7MJkEPVkYOTyEFafegYIAj4TBQnjbP/tcESvNRTJqhpslImy8s7Nr1fDL7mMRwe7M54k+3+oeKqjKNvbnbanpfatDRf52WKfN9GGoKB16ayK7H8ectB5uQwm45MstrirLHyjC9ijKuvVIF7H7gd099SEQSC/lsIpsG+a3CSqUXBGGcmuaqoGbIL/SoJhMAwE6WA5QlZ4D9kaPWn8NCG99xDjHOFxjdBOJFbt7JKoNPyRt62ZzvtnN+bd7jNkjFaO4HkWvywCXMzLYF4q94w5S0D8+Lw2GdWws1CbK0EaNqfxPQwlFpMsEvYsF6OPdD1307DIgmB/bUtFPXtFv2KKGHhnNptqPWl+EN+utgGXYnHINcKSEbp3QjbNBpG8GdbLVTn33gBF9+cwb1RxpW0QeJlcOU11ijVS/AShVuDJ/f90WFOw="
+jdk:
+  - oraclejdk8
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+
+
