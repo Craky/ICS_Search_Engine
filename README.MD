@@ -3,7 +3,7 @@ ICS Search Engine
 [![][travis img]][travis]
 [![][coverage img]][coverage]
 [![][sonar img]][sonar]
-[![][styleci]][styleci img]
+[![][styleci img]][styleci]
 
 [travis]:https://travis-ci.org/vivekpn/ICS_Search_Engine/builds
 [travis img]:https://api.travis-ci.org/vivekpn/ICS_Search_Engine.png
