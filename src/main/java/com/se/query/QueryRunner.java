@@ -69,7 +69,7 @@ public class QueryRunner {
 		normalizeScores(results);
 
 		results = filterSearchResults(results, 10);
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < results.size() ; i++) {
 			SearchResult result = results.get(i);
 			Document document = result.getDocument();
 			String snippet = Snippet.generate(document, result.getPositions());
@@ -85,6 +85,9 @@ public class QueryRunner {
 	private List<SearchResult> filterSearchResults(List<SearchResult> results,
 			int limit) {
 		int size = results.size();
+		if (size == 0){
+			return new ArrayList<SearchResult>();
+		}
 		if (results.size() > limit) {
 			size = limit;
 		}
