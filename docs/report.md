@@ -256,4 +256,14 @@ NDCG:	[0.0, 0.0, 0.0, 0.21021141005653626, 0.20286500865597562]
 ![image alt text](media/image_10.png)
 
 	
+### Useful Commands
 
+Exporting MongoDB
+```
+mongorestore --db database_name path_to_bson_file
+```
+
+Importing MongoDB
+```
+mongorestore --db database_name path_to_bson_file
+```
