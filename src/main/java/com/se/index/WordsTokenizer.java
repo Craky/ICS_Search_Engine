@@ -49,7 +49,7 @@ public class WordsTokenizer {
 
 
 	public static boolean isStopWord(String currentWord) {
-		return currentWord.length() < 3 || Stopwords.isStopword(currentWord);
+		return currentWord.length() < 3 || Stopwords.isStopword(currentWord) || currentWord.matches("[0-9]+");
 	}
 
 }
