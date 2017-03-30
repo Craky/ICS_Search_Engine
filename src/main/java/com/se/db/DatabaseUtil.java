@@ -11,6 +11,7 @@ import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.se.data.AnchorTextToken;
 import com.se.data.Document;
 import com.se.data.InvertedIndex;
@@ -18,14 +19,15 @@ import com.se.data.PageRankData;
 import com.se.index.WordsTokenizer;
 
 public class DatabaseUtil {
-	private static final String DATABASE_NAME = "SearchEngine";
+	private static final String DATABASE_NAME = "searchengine";
 	private final Datastore datastore;
 	private static DatabaseUtil databaseUtil = null;
 	private MongoClient mongoClient;
+	private static final String HOST = "mongodb://vivek:cs221@ds145780.mlab.com:45780/searchengine";
 
 	private DatabaseUtil() {
-		mongoClient = new MongoClient("192.168.0.21", 27017);
-//		mongoClient = new MongoClient("localhost", 27017);
+		MongoClientURI uri  = new MongoClientURI(HOST);
+		mongoClient = new MongoClient(uri);
 		Morphia morphia = new Morphia();
 
 		morphia.mapPackage("com.se.index");
@@ -60,15 +62,15 @@ public class DatabaseUtil {
 			System.err.println(exception);
 		}
 	}
-	
+
 	public <T> List<T> search(Class<T> tClass, String key, Object value) {
 		Query<T> query = datastore.createQuery(tClass);
 		query.field(key).equals(value);
 		return query.asList();
 	}
-	
-	public static DatabaseUtil create(){
-		if(databaseUtil == null){
+
+	public static DatabaseUtil create() {
+		if (databaseUtil == null) {
 			databaseUtil = new DatabaseUtil();
 		}
 		return databaseUtil;
@@ -76,14 +78,14 @@ public class DatabaseUtil {
 
 	public Double getPagerank(Integer docId) {
 		PageRankData result = searchById(PageRankData.class, docId);
-		if(result == null){
+		if (result == null) {
 			return 0.0;
 		}
 		return result.getScore();
 	}
 
 	public static void close() {
-		if(databaseUtil == null){
+		if (databaseUtil == null) {
 			return;
 		}
 		databaseUtil.mongoClient.close();
@@ -94,8 +96,8 @@ public class DatabaseUtil {
 	public AnchorTextToken searchAnchorText(String term) {
 		return searchById(AnchorTextToken.class, term);
 	}
-	
-	public Map<String, InvertedIndex> getInvertedIndexRows(String query){
+
+	public Map<String, InvertedIndex> getInvertedIndexRows(String query) {
 		Map<String, InvertedIndex> tokenToEntry = new HashMap<String, InvertedIndex>();
 		for (String term : WordsTokenizer.tokenizeWithStemmingFilterStop(query
 				.toLowerCase())) {
