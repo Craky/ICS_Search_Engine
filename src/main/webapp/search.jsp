@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="stylesheet2.css">
+<link rel="stylesheet" type="text/css" href="search.css">
 <title>Search Engine</title>
 </head>
 <body>
