@@ -267,3 +267,11 @@ Importing MongoDB
 ```
 mongorestore --db database_name path_to_bson_file
 ```
+
+###Online instructions:
+Setting up 
+Hosting MongoDB - mLab
+http://docs.mlab.com/
+
+Hosting Java application - Heroku
+https://devcenter.heroku.com/articles/getting-started-with-java
