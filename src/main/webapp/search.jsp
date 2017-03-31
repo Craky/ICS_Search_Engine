@@ -10,7 +10,7 @@
 <title>Search Engine</title>
 </head>
 <%
-String query = request.getAttribute("query");
+String query = (String) request.getAttribute("query");
 %>
 
 <body>
