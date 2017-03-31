@@ -1,7 +1,6 @@
 package com.se.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,6 @@ public class ResultsServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
 
 		String query = request.getParameter("search");
 
@@ -41,26 +39,11 @@ public class ResultsServlet extends HttpServlet {
 		request.setAttribute("query", query);
 		request.getRequestDispatcher("search.jsp").forward(request, response);
 
-		out.close();
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-
-		String query = request.getParameter("search");
-		QueryRunner queryRunner = new QueryRunner();
-		List<SearchResult> searchResults = queryRunner.search(query);
-		List<SearchResultsUI> searchResultsUIs = new ArrayList<>();
-		for (SearchResult searchResult : searchResults) {
-			searchResultsUIs.add(new SearchResultsUI(searchResult));
-		}
-
-		request.setAttribute("searchResultsUIs", searchResultsUIs);
-		request.setAttribute("query", query);
-		request.getRequestDispatcher("search.jsp").forward(request, response);
-
-		out.close();
+		doGet(request, response);
 	}
 
 }
