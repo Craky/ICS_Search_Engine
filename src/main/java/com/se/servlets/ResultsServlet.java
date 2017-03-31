@@ -34,18 +34,14 @@ public class ResultsServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 
-		String name = request.getParameter("search");
+		String query = request.getParameter("search");
 		QueryRunner queryRunner = new QueryRunner();
-		List<SearchResult> searchResults = queryRunner.search(name);
+		List<SearchResult> searchResults = queryRunner.search(query);
 
 		request.setAttribute("searchResults", searchResults);
+		request.setAttribute("query", query);
 		request.getRequestDispatcher("search.jsp").forward(request, response);
 
-//		out.print("Results for search query: " + name);
-//		out.print("\n");
-//		for (SearchResult searchResult : searchResults) {
-//			out.println(searchResult.getDocument().getUrl() + "  || SCORE: " + searchResult.getScore().toString());
-//		}
 		out.close();
 	}
 
@@ -57,22 +53,18 @@ public class ResultsServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 
-		String name = request.getParameter("search");
+		String query = request.getParameter("search");
 		QueryRunner queryRunner = new QueryRunner();
-		List<SearchResult> searchResults = queryRunner.search(name);
+		List<SearchResult> searchResults = queryRunner.search(query);
 		List<SearchResultsUI> searchResultsUIs = new ArrayList<>();
 		for (SearchResult searchResult : searchResults) {
 			searchResultsUIs.add(new SearchResultsUI(searchResult));
 		}
 
 		request.setAttribute("searchResultsUIs", searchResultsUIs);
+		request.setAttribute("query", query);
 		request.getRequestDispatcher("search.jsp").forward(request, response);
 		
-//		out.print("Results for search query: " + name);
-//		out.print("\n");
-//		for (SearchResult searchResult : searchResults) {
-//			out.println(searchResult.getDocument().getUrl() + "  || SCORE: " + searchResult.getScore().toString());
-//		}
 		out.close();
 	}
 

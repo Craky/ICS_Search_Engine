@@ -9,11 +9,14 @@
 <link rel="stylesheet" type="text/css" href="search.css">
 <title>Search Engine</title>
 </head>
+<%
+String query = request.getAttribute("query");
+%>
+
 <body>
 	<form action="results" method="post" autocomplete="on" align="center">
-
 		<input type="text" name="search" class="search" autocomplete="on"
-			placeholder="Enter your search term">
+			placeholder="Enter your search term" value = "<%=query.toString()%>" >
 			<input type="submit"
 			value="search" class="button"><br>
 		<br>
@@ -30,16 +33,9 @@
 			page_search = Integer.parseInt(request.getParameter("page"));
 		
 			int total=2;
-/* 			int page_no = Integer.parseInt(page_search); */
 			int page_no=page_search;
 			int init_page = ((page_no-1)*total)+1;
-			
-			for (int i = init_page; i < (page_no+total); i++) {
-				//out.println(searchResults.get(i));
-			}}
-			//out.print("Results for search query: ");
-			//out.print("\n");
-			
+		}
 
 			for (SearchResultsUI result : searchResultsUIs) {
 		%>
@@ -59,17 +55,5 @@
 			}
 		%>
 	</table>
-	<%--  <div class="pagination">
-
-
-<% 		
-	int size=searchResultsUIs.size();
-	for(int i=0;i<size;i++)
-	{%>
-		<a
-			href="http://localhost:8080/web-indexer/search.jsp?page=<%out.print(i);%>"><%out.print(i);%></a>
-
-		<%}%>
-	</div>--%>
 </body>
 </html>
