@@ -7,19 +7,22 @@ addons:
     token:
       secure: NjClLSPVvSj6PclfCinekYYVvwJi35e0Fx66NMAu7Bo9+LyANkB69Fc3hM2ZBCXQtQKdshLU+aRBCevkYWI2C411ktqRH53SPNkT3DSRhyrjtMSOJXDEshYM6UbpEQLHV+tcwbzQSzUSXR8CmQ7wEeYbXbSIXtzt2XI3R66xAyVB26r5zSALby5einAaUbTOmbqkvYDLVd1sIle3fvVaDfQyhmHnSpfGQD2OcqJmAmwN9bjZUFqmgkzN9DAIw5IWV7lRvKQ4An5zvuZuOy+kLaLd/Ilc0WwGqtmiV640gX6eBVpACG8PTWULttfdMoeksrUld6knMtyxwd3uxjR/HOVontw0ZBDvimuiljnQf37TjgOjymVGDmovQEMgxcXqsTrNIhIyvGzg4VwDX5EmLCbnuy4P0x+/nGSnXqYrYy/GsIvGIf9niqG1gXiFvFddFgpQAp4m2tpReFc7Jw3C0tDOhZMAkk3yFFx1EPBO92mrcATncnz7XXEqaaXrtSsyi+Ux2AWrBIyONwi7Ngc5wMSuvVTclUj728JQn6tTR9IRJ/TCJb4Xm/FaGFiJHDheeAlODFqhT0i0tZzBwI4nvqKJ3uDrll7GNOCLVfS5BlrVBLrAqJjMlhBPHCMTKEXFBAtEMDfX309CdJHPNy5dlGWS4c4/ZpcFHe2GQkFEDWk=
 jdk:
-  - oraclejdk8
+- oraclejdk8
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
-  - mvn cobertura:cobertura
-
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+- mvn cobertura:cobertura
 after_success:
-  - bash <(curl -s https://codecov.io/bash) 
+- bash <(curl -s https://codecov.io/bash)
 cache:
   directories:
-    -  ~/.m2/repository
-    -  ~/.sonar/cache
+  - "~/.m2/repository"
+  - "~/.sonar/cache"
 notifications:
   email:
     on_success: never
     on_failure: change
-
+deploy:
+  provider: heroku
+  api_key:
+    secure: ZBghWPLl8nOolYP+7Sbu8xVaoMgmEdRwrsp2wKokqbNcqz/Z8pgC0heS62huik09fQB8tc2NjPhb82upnzF6CX0sYaZr9c5nNUWdNorz9+Ve979nUwPVVzCe15KjG4pThHK5nrteJgRXL9I3QOv2XFXN4ZCsuGlgiKvdUnoYCLs9eO3dGEIsGrqb5ny2s94Ogkiwcp38cs06lFBiZq73xlr0kR3iYMxUK3THxZh4mm669c6VTLoQZHfDsgRCdr33tGhafhX7Vtnuwuifjo3qLVo+YV3egdHty2IaCHA/ZxLht6jp2HUk3DIgU91FHmXwrD/p0nmp1FetmlTMhEgeKOwp/irjHYRx8OcdG4PbEBvQ6DWdwJXUv25J+OSXeZT3+plS52D06TjzXkuTog7vCQyFf0pnSWc4J0+YMCK4NxZGL3uHiu5clYF3FOWM4K0qbYp3561mgaHYzp0CswtptCoy8evrxgG2zukrLpQMmCaUWugz4s0o3OhBGtkGRfJR1T7Ba04c2bbB30T+WTEhZ2Nd7j1XHC52ivFVMyJ4FtWeij/Fz1usm7cSrN9700mbwXIlBMlnsQrLTh4HhQ30j4/qJ/4Uc1yG36t2mI7oQTBwigqsMNVYU9KSGsV2GN7leAgNYXLzobrsfUi71dt643Ncre2j5FFW7pCOymL5/rg=
+  app: pacific-crag-55364
