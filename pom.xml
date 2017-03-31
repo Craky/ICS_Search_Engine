@@ -15,6 +15,27 @@
 					<webXml>src\main\webapp\WEB-INF\web.xml</webXml>
 				</configuration>
 			</plugin>
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-dependency-plugin</artifactId>
+		      <version>2.3</version>
+		      <executions>
+		        <execution>
+		          <phase>package</phase>
+		          <goals><goal>copy</goal></goals>
+		          <configuration>
+		            <artifactItems>
+		              <artifactItem>
+		                <groupId>org.eclipse.jetty</groupId>
+		                <artifactId>jetty-runner</artifactId>
+		                <version>9.3.3.v20150827</version>
+		                <destFileName>jetty-runner.jar</destFileName>
+		              </artifactItem>
+		            </artifactItems>
+		          </configuration>
+		        </execution>
+		       </executions>
+		    </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -34,11 +55,12 @@
                                     <destFileName>webapp-runner.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>artifacts</outputDirectory>
+                            <!--outputDirectory>artifacts</outputDirectory-->
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.0.0</version>
@@ -56,6 +78,7 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
@@ -65,7 +88,7 @@
 						<format>html</format>
 						<format>xml</format>
 					</formats>
-					<check />
+					<check/>
 				</configuration>
 			</plugin>			
 			<!--plugin>
