@@ -19,8 +19,9 @@ public class ResultsServlet extends HttpServlet {
 		super();
 	}
 
+	@Override
 	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+			HttpServletResponse response) {
 
 		String query = request.getParameter("search");
 
@@ -37,12 +38,18 @@ public class ResultsServlet extends HttpServlet {
 
 		request.setAttribute("searchResultsUIs", searchResultsUIs);
 		request.setAttribute("query", query);
-		request.getRequestDispatcher("search.jsp").forward(request, response);
+		try {
+			request.getRequestDispatcher("search.jsp").forward(request,
+					response);
+		} catch (ServletException | IOException exception) {
+			System.err.println(exception.getMessage());
+		}
 
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+			HttpServletResponse response) {
 		doGet(request, response);
 	}
 
