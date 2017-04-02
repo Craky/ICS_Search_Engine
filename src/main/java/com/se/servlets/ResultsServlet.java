@@ -48,7 +48,7 @@ public class ResultsServlet extends HttpServlet {
 			request.getRequestDispatcher("search.jsp").forward(request,
 					response);
 		} catch (ServletException | IOException exception) {
-			LOGGER.error(exception.getMessage());
+			LOGGER.error(exception.getMessage(), exception);
 		}
 
 	}
