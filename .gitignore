@@ -6,3 +6,4 @@ webindexer.iml
 .idea/*
 web-indexer.iml
 .DS_Store
+.pmd

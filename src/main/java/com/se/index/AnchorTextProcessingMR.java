@@ -23,6 +23,8 @@ import org.apache.hadoop.mapreduce.lib.output.NullOutputFormat;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.se.algorithm.TermSourceTarget;
@@ -37,10 +39,13 @@ public class AnchorTextProcessingMR {
 	private static DatabaseUtil db;
 	private static Map<String, Integer> urlToDocId;
 	private static Gson gson = new Gson();
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(AnchorTextProcessingMR.class);
 
 	public static class AnchorTextMapper extends
 			Mapper<Object, Text, IntWritable, Text> {
 
+		@Override
 		public void map(Object key, Text value, Context context)
 				throws InterruptedException, IOException {
 			StringTokenizer itr = new StringTokenizer(value.toString());
@@ -67,8 +72,8 @@ public class AnchorTextProcessingMR {
 					if (targetDocId == null) {
 						continue;
 					}
-					List<String> tokens = WordsTokenizer.tokenizeWithStemmingFilterStop(element
-							.text());
+					List<String> tokens = WordsTokenizer
+							.tokenizeWithStemmingFilterStop(element.text());
 					for (String token : tokens) {
 						TermSourceTarget termSourceTarget = new TermSourceTarget();
 						termSourceTarget.setSourceDocId(sourceDocId);
@@ -79,7 +84,7 @@ public class AnchorTextProcessingMR {
 					}
 				}
 			} catch (IllegalArgumentException e) {
-				System.err.println(e.getMessage());
+				LOGGER.error(e.getMessage());
 			}
 
 		}
@@ -90,18 +95,19 @@ public class AnchorTextProcessingMR {
 		}
 
 		private String trim(String outgoingUrl) {
-			outgoingUrl = outgoingUrl.replaceFirst("^(http://|https://)", "");
-			if (outgoingUrl.endsWith("/")) {
-				outgoingUrl = outgoingUrl
-						.substring(0, outgoingUrl.length() - 1);
+			String protocolRemovedUrl = outgoingUrl.replaceFirst(
+					"^(http://|https://)", "");
+			if (protocolRemovedUrl.endsWith("/")) {
+				return outgoingUrl.substring(0, outgoingUrl.length() - 1);
 			}
-			return outgoingUrl;
+			return protocolRemovedUrl;
 		}
 	}
 
 	public static class AnchorTextCombiner extends
 			Reducer<IntWritable, Text, Text, Text> {
 
+		@Override
 		public void reduce(IntWritable targetDocId, Iterable<Text> values,
 				Context context) throws IOException, InterruptedException {
 			Map<String, AnchorPosting> map = new HashMap<String, AnchorPosting>();
