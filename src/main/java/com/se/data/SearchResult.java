@@ -1,7 +1,7 @@
 package com.se.data;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -14,7 +14,7 @@ public class SearchResult implements Comparable<SearchResult> {
 	private String title;
 
 	public SearchResult() {
-		scores = new HashMap<>();
+		scores = new EnumMap<>(ScoreType.class);
 		positions = new ArrayList<>();
 	}
 
@@ -75,7 +75,6 @@ public class SearchResult implements Comparable<SearchResult> {
 		this.positions = positions;
 	}
 
-
 	public String getUrl() {
 		return document.getUrl();
 	}
@@ -102,5 +101,5 @@ public class SearchResult implements Comparable<SearchResult> {
 	public Map<ScoreType, Double> getScores() {
 		return scores;
 	}
-		
+
 }
