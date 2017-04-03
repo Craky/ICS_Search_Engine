@@ -2,7 +2,7 @@ package com.se.query;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -29,47 +29,47 @@ import com.se.index.WordsTokenizer;
 import com.se.util.NDCG;
 
 public class QueryRunner {
-	private static final Logger logger = LoggerFactory
+	private static final Logger LOGGER = LoggerFactory
 			.getLogger(QueryRunner.class);
-	private static final StopWatch watch = new Slf4JStopWatch(logger);
+	private static final StopWatch WATCH = new Slf4JStopWatch(LOGGER);
 
 	public List<SearchResult> search(String query) {
 		Map<Integer, SearchResult> searchResults;
 		DatabaseUtil databaseUtil = DatabaseUtil.create();
 		Map<String, InvertedIndex> tokenToInvertedIndex = databaseUtil
 				.getInvertedIndexRows(query);
-		watch.lap("Data fetch");
+		WATCH.lap("Data fetch");
 
 		ScoringAlgorithm tfIdfCalculator = new TfIdfCalculator(
 				tokenToInvertedIndex);
 		searchResults = tfIdfCalculator.calculate(query);
-		watch.lap("TFIDF");
+		WATCH.lap("TFIDF");
 
 		ScoringAlgorithm cosineCalculator = new CosineCalculator(searchResults,
 				tokenToInvertedIndex);
 		searchResults = cosineCalculator.calculate(query);
-		watch.lap("Cosine");
+		WATCH.lap("Cosine");
 
 		ScoringAlgorithm anchorTextCalculator = new AnchorTextCalculator(
 				searchResults);
 		searchResults = anchorTextCalculator.calculate(query);
-		watch.lap("AnchorText");
+		WATCH.lap("AnchorText");
 
 		ScoringAlgorithm tagWeightCalculator = new TagWeightCalculator(
 				searchResults, tokenToInvertedIndex);
 		searchResults = tagWeightCalculator.calculate(query);
-		watch.lap("TagWeight");
+		WATCH.lap("TagWeight");
 
 		ScoringAlgorithm pageRankCalculator = new PageRankCalculator(
 				searchResults);
 		searchResults = pageRankCalculator.calculate(query);
-		watch.lap("PageRank");
+		WATCH.lap("PageRank");
 
 		List<SearchResult> results = new ArrayList<>(searchResults.values());
 		normalizeScores(results);
 
 		results = filterSearchResults(results, 10);
-		for (int i = 0; i < results.size() ; i++) {
+		for (int i = 0; i < results.size(); i++) {
 			SearchResult result = results.get(i);
 			Document document = result.getDocument();
 			String snippet = Snippet.generate(document, result.getPositions());
@@ -78,14 +78,14 @@ public class QueryRunner {
 					document.getUrl()));
 		}
 		DatabaseUtil.close();
-		watch.stop("PageRank");
+		WATCH.stop("PageRank");
 		return results;
 	}
 
 	private List<SearchResult> filterSearchResults(List<SearchResult> results,
 			int limit) {
 		int size = results.size();
-		if (size == 0){
+		if (size == 0) {
 			return new ArrayList<SearchResult>();
 		}
 		if (results.size() > limit) {
@@ -96,7 +96,7 @@ public class QueryRunner {
 	}
 
 	private void normalizeScores(List<SearchResult> results) {
-		Map<ScoreType, Double> maximums = new HashMap<ScoreType, Double>();
+		Map<ScoreType, Double> maximums = new EnumMap<>(ScoreType.class);
 		for (ScoreType scoreType : ScoreType.values()) {
 			maximums.put(scoreType, 0.0);
 		}
@@ -111,7 +111,7 @@ public class QueryRunner {
 
 		for (ScoreType scoreType : ScoreType.values()) {
 			Double maximum = maximums.get(scoreType);
-			if (maximum == 0.0) {
+			if (Double.compare(maximum, 0.0) < 0) {
 				continue;
 			}
 			for (SearchResult result : results) {
@@ -145,8 +145,9 @@ public class QueryRunner {
 		String query = "crista lopes";
 		QueryRunner queryRunner = new QueryRunner();
 		List<SearchResult> searchResults = queryRunner.search(query);
+		LOGGER.info("Search results for query = {}", query);
 		for (SearchResult result : searchResults) {
-			System.out.println(result);
+			LOGGER.info(result.toString());
 		}
 		NDCG ndcg = new NDCG();
 		ndcg.findNDCG(query, searchResults);
