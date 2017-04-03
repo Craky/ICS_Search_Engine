@@ -86,7 +86,7 @@ public class QueryRunner {
 			int limit) {
 		int size = results.size();
 		if (size == 0) {
-			return new ArrayList<SearchResult>();
+			return new ArrayList<>();
 		}
 		if (results.size() > limit) {
 			size = limit;
@@ -147,7 +147,7 @@ public class QueryRunner {
 		List<SearchResult> searchResults = queryRunner.search(query);
 		LOGGER.info("Search results for query = {}", query);
 		for (SearchResult result : searchResults) {
-			LOGGER.info(result.toString());
+			LOGGER.info("{}", result);
 		}
 		NDCG ndcg = new NDCG();
 		ndcg.findNDCG(query, searchResults);
