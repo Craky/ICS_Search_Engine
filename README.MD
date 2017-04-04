@@ -18,7 +18,7 @@ The search engine is implemented in Java. This repository contains the complete 
 1) A tokenizer where the liguistic models are applied to the content of the HTML page forming the tokens. Stopwords are removed and the words are stemmed using snowball stemmer.
 2) Other properties of a webpage such as anchor links, anchor texts, HTML tags (Eg: title, b, i, h1, h2, p, ...) are extracted from the page and stored in the database. Used MapReduce for indexing the webpages.
 3) MongoDB is used for storing the inverted index.
-4) TF-IDF, cosine similarity, PageRank, weights for anchor text and html tags are the techniques used for scoring the search results.
+4) TF-IDF, cosine similarity, PageRank, weights for anchor text and HTML tags are the techniques used for scoring the search results.
 5) A webpage to enter the query and display the search results is created using JSP.
 
 The search engine is deployed on Heroku. MongoDB is hosted using mLab's service. The repository is configured to auto build and deploy WAR on Heroku for every commit. 
