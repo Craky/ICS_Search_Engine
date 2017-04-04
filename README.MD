@@ -1,4 +1,4 @@
-#ICS Search Engine
+# ICS Search Engine
 ---------
 [![][travis img]][travis]
 [![][coverage img]][coverage]
@@ -19,4 +19,3 @@ The search engine is implemented in Java. This repository contains the complete 
 1) A tokenizer where the liguistic models are applied to the content of the HTML page forming the tokens. Stopwords are removed and the words are stemmed using snowball stemmer.
 2) Other properties of a webpage such as anchor links, anchor texts, HTML tags (Eg: title, b, i, h1, h2, p, ...) are extracted from the page and stored in the database.
 3) MongoDB is used for storing the inverted index.
-#
