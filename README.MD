@@ -1,11 +1,10 @@
 # ICS Search Engine
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/15fe5642b6f54e0ebd46afff1b7cfa46)](https://www.codacy.com/app/pnvivek999/ICS_Search_Engine?utm_source=github.com&utm_medium=referral&utm_content=vivekpn/ICS_Search_Engine&utm_campaign=badger)
-
-[![][travis img]][travis]
-[![][coverage img]][coverage]
-[![][sonar img]][sonar]
-[![][lines img]][lines]
+[![Travis Badge][travis img]][travis]
+[![Coverage Badge][coverage img]][coverage]
+[![Sonar Badge][sonar img]][sonar]
+[![LOC Badge][lines img]][lines]
+[![Codacy Badge][codacy]][codacy img]
 
 [travis]:https://travis-ci.org/vivekpn/ICS_Search_Engine/builds
 [travis img]:https://api.travis-ci.org/vivekpn/ICS_Search_Engine.png
@@ -15,6 +14,8 @@
 [sonar img]:https://sonarqube.com/api/badges/measure?key=com.project:ics-search-engine&metric=sqale_debt_ratio
 [lines]:https://sonarqube.com/component_measures/metric/ncloc/list?id=com.project%3Aics-search-engine
 [lines img]:https://sonarqube.com/api/badges/measure?key=com.project:ics-search-engine&metric=ncloc
+[codacy img]:https://www.codacy.com/app/pnvivek999/ICS_Search_Engine?utm_source=github.com&utm_medium=referral&utm_content=vivekpn/ICS_Search_Engine&utm_campaign=badger
+[codacy]:https://api.codacy.com/project/badge/Grade/15fe5642b6f54e0ebd46afff1b7cfa46
 
 The search engine is implemented in Java. This repository contains the complete implementation of search engine except the crawler. The crawled data is available in the data subfolder. The search engine consists of the following.
 1) A tokenizer where the liguistic models are applied to the content of the HTML page forming the tokens. Stopwords are removed and the words are stemmed using snowball stemmer.
