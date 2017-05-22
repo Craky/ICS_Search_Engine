@@ -1,5 +1,7 @@
 # ICS Search Engine
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/15fe5642b6f54e0ebd46afff1b7cfa46)](https://www.codacy.com/app/pnvivek999/ICS_Search_Engine?utm_source=github.com&utm_medium=referral&utm_content=vivekpn/ICS_Search_Engine&utm_campaign=badger)
+
 [![][travis img]][travis]
 [![][coverage img]][coverage]
 [![][sonar img]][sonar]
